@@ -6,30 +6,26 @@ import java.util.List;
 
 public abstract class Ouvrage {
     protected String titre;
-    protected byte ageMin;
+    protected int ageMin;
     protected LocalDate dateParution;
-    protected TypeOuvrage typeOuvrage;
+    protected TypeOuvrage to;
     protected double prixLocation;
     protected String langue;
     protected String genre;
-    protected List<Auteur> auteurs=new ArrayList<>();
-    protected List<Exemplaire> exemplaires=new ArrayList<>();
-    public void listerExemplaires() {
-    }
 
-    public Ouvrage(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre) {
+    protected List<Auteur> lauteurs=new ArrayList<>();
+    protected List<Exemplaire> lex = new ArrayList<>();
+
+
+    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) {
         this.titre = titre;
         this.ageMin = ageMin;
         this.dateParution = dateParution;
-        this.typeOuvrage = typeOuvrage;
+        this.to = to;
         this.prixLocation = prixLocation;
         this.langue = langue;
         this.genre = genre;
     }
-
-    public void listerExemplaires(boolean enLocation) {
-    }
-    public abstract double amandeRetard(int nbJours);
 
     public String getTitre() {
         return titre;
@@ -39,11 +35,11 @@ public abstract class Ouvrage {
         this.titre = titre;
     }
 
-    public byte getAgeMin() {
+    public int getAgeMin() {
         return ageMin;
     }
 
-    public void setAgeMin(byte ageMin) {
+    public void setAgeMin(int ageMin) {
         this.ageMin = ageMin;
     }
 
@@ -55,12 +51,12 @@ public abstract class Ouvrage {
         this.dateParution = dateParution;
     }
 
-    public TypeOuvrage getTypeOuvrage() {
-        return typeOuvrage;
+    public TypeOuvrage getTo() {
+        return to;
     }
 
-    public void setTypeOuvrage(TypeOuvrage typeOuvrage) {
-        this.typeOuvrage = typeOuvrage;
+    public void setTo(TypeOuvrage to) {
+        this.to = to;
     }
 
     public double getPrixLocation() {
@@ -87,19 +83,66 @@ public abstract class Ouvrage {
         this.genre = genre;
     }
 
-    public List<Auteur> getAuteurs() {
-        return auteurs;
+    public List<Auteur> getLauteurs() {
+        return lauteurs;
     }
 
-    public void setAuteurs(List<Auteur> auteurs) {
-        this.auteurs = auteurs;
+    public void setLauteurs(List<Auteur> lauteurs) {
+        this.lauteurs = lauteurs;
     }
 
-    public List<Exemplaire> getExemplaires() {
-        return exemplaires;
+    public List<Exemplaire> getLex() {
+        return lex;
     }
 
-    public void setExemplaires(List<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
+    public void setLex(List<Exemplaire> lex) {
+        this.lex = lex;
+    }
+
+
+    public abstract double amendeRetard(int njours);
+
+    public abstract int njlocmax();
+
+    @Override
+    public String toString() {
+        return "Ouvrage{" +
+                "titre='" + titre + '\'' +
+                ", ageMin=" + ageMin +
+                ", dateParution=" + dateParution +
+                ", to=" + to +
+                ", prixLocation=" + prixLocation +
+                ", langue='" + langue + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
+    public void addAuteur(Auteur a ){
+        lauteurs.add(a);
+        a.getLouvrage().add(this);
+    }
+
+    public void remove(Auteur a){
+        lauteurs.remove(a);
+        a.getLouvrage().remove(this);
+    }
+    public void addExemplaire(Exemplaire e){
+        lex.add(e);
+        e.setOuvrage(this);
+    }
+
+    public void remove(Exemplaire e){
+        lex.remove(e);
+        e.setOuvrage(null);
+    }
+    public List<Exemplaire>listerExemplaires(){
+        return lex;
+    }
+
+    public List<Exemplaire>listerExemplaires(boolean enLocation){
+        List<Exemplaire> lex2 = new ArrayList<>();
+        for(Exemplaire ex : lex){
+            if(ex.enLocation()==enLocation) lex2.add(ex);
+        }
+        return lex2;
     }
 }

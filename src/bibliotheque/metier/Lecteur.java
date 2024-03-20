@@ -3,49 +3,34 @@ package bibliotheque.metier;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Lecteur {
-    private static long numLecteurSuivant = 1;
-    private long numLecteur;
-    private String nom;
-    private String prenom;
-    private LocalDate dateNaiss;
-    private String mail;
+    private int numlecteur;
+    private  String nom,prenom;
+    private LocalDate dn;
     private String adresse;
+    private String mail;
     private String tel;
-    private List<Location> locations=new ArrayList<>();
-    public Lecteur() {
-    }
-    public Lecteur(String nom, String prenom, LocalDate dateNaiss, String mail, String adresse, String tel) {
-        this.numLecteur = numLecteur;
+
+    private List<Location> lloc=new ArrayList<>();
+
+    public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) {
+        this.numlecteur = numlecteur;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateNaiss = dateNaiss;
-        this.mail = mail;
+        this.dn = dn;
         this.adresse = adresse;
+        this.mail = mail;
         this.tel = tel;
-        numLecteur=numLecteurSuivant++;
     }
 
-    public void listerExemplairesEnLocation() {
-    }
-    public void listerExemplairsLoues() {
-    }
-
-    public static long getNumLecteurSuivant() {
-        return numLecteurSuivant;
+    public int getNumlecteur() {
+        return numlecteur;
     }
 
-    public static void setNumLecteurSuivant(long numLecteurSuivant) {
-        Lecteur.numLecteurSuivant = numLecteurSuivant;
-    }
-
-    public long getNumLecteur() {
-        return numLecteur;
-    }
-
-    public void setNumLecteur(long numLecteur) {
-        this.numLecteur = numLecteur;
+    public void setNumlecteur(int numlecteur) {
+        this.numlecteur = numlecteur;
     }
 
     public String getNom() {
@@ -64,20 +49,12 @@ public class Lecteur {
         this.prenom = prenom;
     }
 
-    public LocalDate getDateNaiss() {
-        return dateNaiss;
+    public LocalDate getDn() {
+        return dn;
     }
 
-    public void setDateNaiss(LocalDate dateNaiss) {
-        this.dateNaiss = dateNaiss;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setDn(LocalDate dn) {
+        this.dn = dn;
     }
 
     public String getAdresse() {
@@ -88,6 +65,14 @@ public class Lecteur {
         this.adresse = adresse;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public String getTel() {
         return tel;
     }
@@ -96,11 +81,47 @@ public class Lecteur {
         this.tel = tel;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public List<Location> getLloc() {
+        return lloc;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public void setLloc(List<Location> lloc) {
+        this.lloc = lloc;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecteur{" +
+                "numlecteur=" + numlecteur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dn=" + dn +
+                ", adresse='" + adresse + '\'' +
+                ", mail='" + mail + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lecteur lecteur = (Lecteur) o;
+        return numlecteur == lecteur.numlecteur;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numlecteur);
+    }
+
+    public List<Exemplaire> listerExemplairesEnLocation(){
+        //TODO lister exemplaires en location lecteur
+        return null;
+    }
+
+    public List<Exemplaire> listerExemplairesEnLoues(){
+        //TODO lister exemplaires loues lecteur
+        return null;
     }
 }
