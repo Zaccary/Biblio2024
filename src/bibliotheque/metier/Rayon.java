@@ -1,11 +1,12 @@
 package bibliotheque.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rayon {
     private String codeRayon;
     private String genre;
-    private List<Exemplaire> exemplaires;
+    private List<Exemplaire> exemplaires=new ArrayList<>();
 
     public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;

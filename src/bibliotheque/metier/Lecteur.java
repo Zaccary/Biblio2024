@@ -1,6 +1,7 @@
 package bibliotheque.metier;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lecteur {
@@ -12,7 +13,7 @@ public class Lecteur {
     private String mail;
     private String adresse;
     private String tel;
-    private List<Location> locations;
+    private List<Location> locations=new ArrayList<>();
     public Lecteur() {
     }
     public Lecteur(String nom, String prenom, LocalDate dateNaiss, String mail, String adresse, String tel) {

@@ -1,12 +1,13 @@
 package bibliotheque.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exemplaire {
     private String Matricule;
     private String descriptionEtat;
     private Ouvrage ouvrage;
-    private List<Location> locations;
+    private List<Location> locations =new ArrayList<>();
     private Rayon rayon;
     public Exemplaire() {
     }
