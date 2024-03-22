@@ -116,7 +116,12 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesEnLocation(){
-        return null;
+        List<Exemplaire> lex = new ArrayList<>();
+        for (Location l : lloc) {
+            if (l.getDateRestitution() != null)
+                lex.add(l.getExemplaire());
+        }
+        return lex;
     }
 
     public List<Exemplaire> listerExemplairesEnLoues(){
