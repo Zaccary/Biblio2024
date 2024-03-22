@@ -157,6 +157,7 @@ public class Gestion {
         lex.add(ex);
         System.out.println("exemplaire créé");
         //TODO attribuer rayon
+
     }
 
     private void gestOuvrages() {
@@ -225,7 +226,9 @@ public class Gestion {
             }
            louv.add(o);
         System.out.println("ouvrage créé");
-        //TODO ajouter 1 auteur à la liste des auteurs
+        gestAuteurs();
+
+
     }
 
        private void gestAuteurs() {
