@@ -156,7 +156,8 @@ public class Gestion {
         Exemplaire ex = new Exemplaire(mat,etat,louv.get(choix-1));
         lex.add(ex);
         System.out.println("exemplaire créé");
-        //TODO attribuer rayon
+        choix = Utilitaire.choixListe(lrayon);
+
 
     }
 
@@ -205,6 +206,7 @@ public class Gestion {
                             ;break;
                 case 3 :
                             System.out.println("code : ");
+                            String langue_temp;
                             code= sc.nextLong();
                             dureeTotale=Utilitaire.lecTime();
                             byte nbreBonus= sc.nextByte();
@@ -214,7 +216,11 @@ public class Gestion {
                             do{
                                 choix=Utilitaire.choixListe(langues);
                                 if(choix==langues.size())break;
-                                ((DVD)o).getAutresLangues().add(langues.get(choix-1));//TODO vérifier unicité ou utiliser set et pas de doublon avec langue d'origine
+                                langue_temp=langues.get(choix-1);
+                                if (((DVD)o).getAutresLangues().contains(langue_temp)||((DVD)o).getLangue().equals(langue_temp)){
+                                    break;
+                                }
+                                ((DVD)o).getAutresLangues().add(langues.get(choix-1));
                             }while(true);
                            System.out.println("sous-titres");
                             do{
