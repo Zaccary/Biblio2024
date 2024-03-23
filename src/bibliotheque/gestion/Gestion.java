@@ -217,16 +217,16 @@ public class Gestion {
                                 choix=Utilitaire.choixListe(langues);
                                 if(choix==langues.size())break;
                                 langue_temp=langues.get(choix-1);
-                                if (((DVD)o).getAutresLangues().contains(langue_temp)||((DVD)o).getLangue().equals(langue_temp)){
-                                    break;
-                                }
-                                ((DVD)o).getAutresLangues().add(langues.get(choix-1));
+                                if (!(((DVD)o).getAutresLangues().contains(langue_temp)||((DVD)o).getLangue().equals(langue_temp)))
+                                    ((DVD)o).getAutresLangues().add(langue_temp);
                             }while(true);
                            System.out.println("sous-titres");
                             do{
                              choix=Utilitaire.choixListe(langues);
+                             langue_temp=langues.get(choix-1);
                              if(choix==langues.size())break;
-                             ((DVD)o).getSousTitres().add(langues.get(choix-1));//TODO vérifier unicité ou utiliser set
+                             if (!((DVD)o).getSousTitres().contains(langue_temp))
+                                ((DVD)o).getSousTitres().add(langue_temp);
                              }while(true);
                             ;break;
             }
