@@ -274,8 +274,16 @@ public class Gestion {
         System.out.println("ouvrage créé");
          choix = choixListe(laut);
         o.addAuteur(laut.get(choix-1));
-        //TODO attribuer auteurs par boucle, les auteur sont triés par ordre de nom et prénom,
-        // ne pas proposer un auteur déjà présent dans la liste des auteurs de cet ouvrage
+        for (Auteur auteur : laut) {
+            if (!o.getLauteurs().contains(auteur)) {
+                System.out.println("Voulez-vous ajouter l'auteur " + auteur.getNom() + " " + auteur.getPrenom() + " à l'ouvrage? (Y/N)");
+                String response = sc.next();
+                if (response.equalsIgnoreCase("Y")) {
+                    o.addAuteur(auteur);
+                    System.out.println("Auteur ajouté à l'ouvrage.");
+                }
+            }
+        }
     }
 
        private void gestAuteurs() {
