@@ -15,8 +15,7 @@ public abstract class Ouvrage {
     protected String genre;
 
     protected HashSet<Auteur> lauteurs=new HashSet<>();
-    protected List<Exemplaire> lex = new ArrayList<>();
-    //TODO remplacer par set
+    protected HashSet<Exemplaire> lex = new HashSet<>();
 
     public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) {
         this.titre = titre;
@@ -92,11 +91,11 @@ public abstract class Ouvrage {
         this.lauteurs = lauteurs;
     }
 
-    public List<Exemplaire> getLex() {
+    public HashSet<Exemplaire> getLex() {
         return lex;
     }
 
-    public void setLex(List<Exemplaire> lex) {
+    public void setLex(HashSet<Exemplaire> lex) {
         this.lex = lex;
     }
 
@@ -135,7 +134,7 @@ public abstract class Ouvrage {
         lex.remove(e);
         e.setOuvrage(null);
     }
-    public List<Exemplaire>listerExemplaires(){
+    public HashSet<Exemplaire>listerExemplaires(){
         return lex;
     }
 
