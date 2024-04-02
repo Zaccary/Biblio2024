@@ -109,6 +109,16 @@ public class Gestion {
         }
         int choix = choixListe(lexemplaires);
         Exemplaire ex = lexemplaires.get(choix-1);
+        ex.getLloc().get(ex.getLloc().size()-1).setDateRestitution(LocalDate.now());
+        System.out.println("exemplaire restitué");
+        System.out.println("changer état? (Y/N)");
+        String response = sc.next();
+        if(response.equalsIgnoreCase("Y")){
+            System.out.println("nouvel état");
+            String etat = sc.next();
+            ex.modifierEtat(etat);
+            System.out.println("état modifié");
+        }
     }
 
     private void gestLocations() {
