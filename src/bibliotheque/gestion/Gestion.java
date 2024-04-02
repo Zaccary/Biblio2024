@@ -162,8 +162,17 @@ public class Gestion {
         lrayon.add(r);
         int  choix = choixListe(lex);
         r.addExemplaire(lex.get(choix-1));
-        //TODO attribuer par une boucle plusieurs exemplaires, les exemplaires sont triés par ordre de titre de l'ouvrage ,
-        //  ne proposer que les exemplaires qui ne sont pas dans déjà présents dans ce rayon et qui ne sont dans aucun autre rayon
+        lex.sort((e1,e2)->e1.getOuvrage().getTitre().compareTo(e2.getOuvrage().getTitre()));
+        for (Exemplaire exemplaire : lex) {
+            if (exemplaire.getRayon() == null) {
+                System.out.println("Voulez-vous ajouter un exemplaire " + exemplaire.getMatricule() + " au rayon? (Y/N)");
+                String response = sc.next();
+                if (response.equalsIgnoreCase("Y")) {
+                    r.addExemplaire(exemplaire);
+                    System.out.println("Exemplaire ajouté au rayon.");
+                }
+            }
+        }
 
     }
 
