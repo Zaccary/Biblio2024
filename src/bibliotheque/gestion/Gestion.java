@@ -109,13 +109,15 @@ public class Gestion {
 
     private void gestLocations() {
         int choix;
-        //TODO ne lister que les exemplaires libres et les trier par matricule
-        choix =choixListe(lex);
-        if(lex.get(choix).enLocation()){
-            System.out.println("exemplaire en location");
-            return;
+        //ne lister que les exemplaires libres et les trier par matricule
+        List<Exemplaire> lexemplaires = new ArrayList<>();
+        for(Exemplaire ex : lex){
+            if(!ex.enLocation())
+                lexemplaires.add(ex);
         }
-        Exemplaire ex = lex.get(choix-1);
+        lexemplaires.sort((e1,e2)->e1.getMatricule().compareTo(e2.getMatricule()));
+        choix = choixListe(lexemplaires);
+        Exemplaire ex = lexemplaires.get(choix-1);
         choix=choixListe(llect);
         Lecteur lec = llect.get(choix-1);
         lloc.add(new Location(lec,ex));

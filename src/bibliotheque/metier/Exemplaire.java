@@ -28,19 +28,6 @@ public class Exemplaire {
         this.ouvrage.getLex().add(this);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Exemplaire that = (Exemplaire) o;
-        return Objects.equals(matricule, that.matricule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(matricule);
-    }
-
     public String getMatricule() {
         return matricule;
     }
@@ -151,6 +138,16 @@ public class Exemplaire {
         return false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exemplaire that = (Exemplaire) o;
+        return Objects.equals(matricule, that.matricule) && Objects.equals(descriptionEtat, that.descriptionEtat) && Objects.equals(ouvrage, that.ouvrage) && Objects.equals(rayon, that.rayon) && Objects.equals(etat, that.etat) && Objects.equals(lloc, that.lloc);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricule, descriptionEtat, ouvrage, rayon, etat, lloc);
+    }
 }
