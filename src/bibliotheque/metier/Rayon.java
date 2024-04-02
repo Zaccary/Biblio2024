@@ -1,14 +1,14 @@
 package bibliotheque.metier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class Rayon {
     private String codeRayon;
     private String genre;
-    private List<Exemplaire> lex = new ArrayList<>();
-    //TODO remplacer par set
+    private HashSet<Exemplaire> lex = new HashSet<>();
 
     public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;
@@ -60,15 +60,15 @@ public class Rayon {
         this.genre = genre;
     }
 
-    public List<Exemplaire> getLex() {
+    public HashSet<Exemplaire> getLex() {
         return lex;
     }
 
-    public void setLex(List<Exemplaire> lex) {
+    public void setLex(HashSet<Exemplaire> lex) {
         this.lex = lex;
     }
 
-    public List<Exemplaire>listerExemplaires(){
+    public HashSet<Exemplaire>listerExemplaires(){
         return lex;
     }
 
