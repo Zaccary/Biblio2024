@@ -1,6 +1,7 @@
 package bibliotheque.metier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,8 +11,7 @@ import static bibliotheque.metier.TypeOuvrage.LIVRE;
 public class Auteur {
     private  String nom,prenom;
     private String nationalite;
-    private List<Ouvrage> louvrage = new ArrayList<>();
-    //TODO remplacer par set
+    private HashSet<Ouvrage> louvrage = new HashSet<>();
 
     public Auteur(String nom, String prenom, String nationalite) {
         this.nom = nom;
@@ -44,11 +44,11 @@ public class Auteur {
         this.nationalite = nationalite;
     }
 
-    public List<Ouvrage> getLouvrage() {
+    public HashSet<Ouvrage> getLouvrage() {
         return louvrage;
     }
 
-    public void setLouvrage(List<Ouvrage> louvrage) {
+    public void setLouvrage(HashSet<Ouvrage> louvrage) {
         this.louvrage = louvrage;
     }
 
@@ -86,7 +86,7 @@ public class Auteur {
         o.getLauteurs().remove(this);
     }
 
-    public List<Ouvrage> listerOuvrages(){
+    public HashSet<Ouvrage> listerOuvrages(){
 
         return louvrage;
     }
