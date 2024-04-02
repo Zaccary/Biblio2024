@@ -7,10 +7,7 @@ import bibliotheque.utilitaires.LivreFactoryBeta;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.choixListe;
 
@@ -105,11 +102,17 @@ public class Gestion {
 
     private void gestRestitution() {
         //TODO lister exemplaires en location , choisir l'un d'entre eux, enregistrer sa restitution et éventuellement changer état
+        List<Exemplaire> lexemplaires = new ArrayList<>();
+        for(Exemplaire ex : lex){
+            if(ex.enLocation())
+                lexemplaires.add(ex);
+        }
+        int choix = choixListe(lexemplaires);
+        Exemplaire ex = lexemplaires.get(choix-1);
     }
 
     private void gestLocations() {
         int choix;
-        //ne lister que les exemplaires libres et les trier par matricule
         List<Exemplaire> lexemplaires = new ArrayList<>();
         for(Exemplaire ex : lex){
             if(!ex.enLocation())
@@ -176,7 +179,7 @@ public class Gestion {
         System.out.println("exemplaire créé");
         choix = choixListe(lrayon);
         ex.setRayon(lrayon.get(choix-1));
-        //TODO attribuer un rayon ==> c'est fait  , nouveauté : les rayons sont triès par ordre de code
+        lrayon.sort(Comparator.comparing(Rayon::getCodeRayon));
     }
 
     private void gestOuvrages() {
