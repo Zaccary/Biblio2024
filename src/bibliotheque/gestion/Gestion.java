@@ -101,7 +101,6 @@ public class Gestion {
     }
 
     private void gestRestitution() {
-        //TODO lister exemplaires en location , choisir l'un d'entre eux, enregistrer sa restitution et éventuellement changer état
         List<Exemplaire> lexemplaires = new ArrayList<>();
         for(Exemplaire ex : lex){
             if(ex.enLocation())
@@ -282,7 +281,7 @@ public class Gestion {
         o = lof.get(choix-1).create();*/
         louv.add(o);
         System.out.println("ouvrage créé");
-         choix = choixListe(laut);
+        choix = choixListe(laut);
         o.addAuteur(laut.get(choix-1));
         for (Auteur auteur : laut) {
             if (!o.getLauteurs().contains(auteur)) {
@@ -308,9 +307,17 @@ public class Gestion {
         System.out.println("écrivain créé");
         int choix = choixListe(louv);
         a.addOuvrage(louv.get(choix-1));
-        //TODO attribuer ouvrages par boucle
-        // les ouvrages sont triés par ordre de titre
-        // ne pas proposer un ouvrage déjà présent dans la liste des ouvrages de cet auteur
+        louv.sort((o1,o2)->o1.getTitre().compareTo(o2.getTitre()));
+        for (Ouvrage ouvrage : louv) {
+            if (!a.listerOuvrages().contains(ouvrage)) {
+                System.out.println("Voulez-vous ajouter l'ouvrage " + ouvrage.getTitre() + " à l'auteur? (Y/N)");
+                String response = sc.next();
+                if (response.equalsIgnoreCase("Y")) {
+                    a.addOuvrage(ouvrage);
+                    System.out.println("Ouvrage ajouté à l'auteur.");
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
