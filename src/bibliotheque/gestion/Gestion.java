@@ -20,8 +20,8 @@ public class Gestion {
     private List<Ouvrage> louv= new ArrayList<>();
     private List<Exemplaire> lex = new ArrayList<>();
     private List<Rayon> lrayon= new ArrayList<>();
-    private List<Location> lloc = new ArrayList<>();
 
+    public static final HashMap<Exemplaire, Lecteur> haloc = new HashMap<>();
 
     public void populate(){
         Auteur a = new Auteur("Verne","Jules","France");
@@ -72,15 +72,8 @@ public class Gestion {
         Lecteur lec = new Lecteur(1,"Dupont","Jean",LocalDate.of(2000,1,4),"Mons","jean.dupont@mail.com","0458774411");
         llect.add(lec);
 
-        Location loc = new Location(LocalDate.of(2023,2,1),LocalDate.of(2023,3,1),lec,e);
-        lloc.add(loc);
-        loc.setDateRestitution(LocalDate.of(2023,2,4));
-
         lec = new Lecteur(1,"Durant","Aline",LocalDate.of(1980,10,10),"Binche","aline.durant@mail.com","045874444");
         llect.add(lec);
-
-        loc = new Location(LocalDate.of(2023,2,5),LocalDate.of(2023,3,5),lec,e);
-        lloc.add(loc);
     }
 
     private void menu() {
@@ -119,7 +112,6 @@ public class Gestion {
         choix=choixListe(llect);
         if(choix==0)return;
         Lecteur lec = llect.get(choix-1);
-        lloc.add(new Location(lec,ex));
     }
 
     private void gestLecteurs() {
