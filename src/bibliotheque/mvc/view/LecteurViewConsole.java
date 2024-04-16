@@ -117,15 +117,6 @@ public class LecteurViewConsole extends AbstractViewLecteur {
         LecteurController.update(a);
    }
 
-/*
-                int numlecteur;
-                String nom;
-                String prenom;
-                LocalDate dn;
-                String adresse;
-                String mail;
-                String tel;
- */
     public void ajouter() {
         Lecteur a;
         do {
