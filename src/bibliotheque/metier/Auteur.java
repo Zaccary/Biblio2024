@@ -15,6 +15,7 @@ public class Auteur {
         this.nom = nom;
         this.prenom = prenom;
         this.nationalite = nationalite;
+
     }
 
     public String getNom() {

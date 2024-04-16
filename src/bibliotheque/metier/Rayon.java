@@ -1,8 +1,6 @@
 package bibliotheque.metier;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Rayon {
     private String codeRayon;
