@@ -1,7 +1,10 @@
 package bibliotheque.gestion;
 
 import bibliotheque.metier.*;
-import bibliotheque.utilitaires.*;
+import bibliotheque.utilitaires.CDFactory;
+import bibliotheque.utilitaires.DVDFactory;
+import bibliotheque.utilitaires.LivreFactory;
+import bibliotheque.utilitaires.OuvrageFactory;
 import bibliotheque.utilitaires.comparators.*;
 
 import java.time.LocalDate;
