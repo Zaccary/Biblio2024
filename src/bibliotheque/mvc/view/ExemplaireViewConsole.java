@@ -1,9 +1,6 @@
 package bibliotheque.mvc.view;
 
-import bibliotheque.metier.Exemplaire;
-import bibliotheque.metier.Mail;
-import bibliotheque.metier.Ouvrage;
-import bibliotheque.metier.Rayon;
+import bibliotheque.metier.*;
 import bibliotheque.mvc.GestionMVC;
 import bibliotheque.mvc.controller.ControllerSpecialExemplaire;
 
@@ -165,7 +162,10 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
    }
 
     private void louer(Exemplaire a) {
-        //TODO chosir un lecteur et enregistrer la location dans LOCATIONS
+        List<Lecteur> la = GestionMVC.lv.getAll();
+        int x =choixListe(la);
+        Lecteur l = la.get(x-1);
+        GestionMVC.LOCATIONS.put(a,l);
     }
 
 
