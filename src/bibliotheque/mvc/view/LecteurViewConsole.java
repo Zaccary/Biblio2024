@@ -3,6 +3,7 @@ package bibliotheque.mvc.view;
 import bibliotheque.metier.Lecteur;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -77,22 +78,30 @@ public class LecteurViewConsole extends AbstractView<Lecteur> {
 
     public void modifier() {
         int choix = choixElt(la);
-        Lecteur l  = la.get(choix-1);
-         do {
+        Lecteur a  = la.get(choix-1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        do {
             try {
-                String nom = modifyIfNotBlank("nom", l.getNom());
-                String prenom = modifyIfNotBlank("prénom", l.getPrenom());
-                String mail = modifyIfNotBlank("nationalité", l.getMail());
-                l.setNom(nom);
-                l.setPrenom(prenom);
-                l.setMail(mail);
-                //TODO gérer autres valeurs
+                int numlecteur = Integer.parseInt(modifyIfNotBlank("numéro", String.valueOf(a.getNumlecteur())));
+                String nom= modifyIfNotBlank("nom", a.getNom());
+                String prenom= modifyIfNotBlank("prénom", a.getPrenom());
+                LocalDate dn= LocalDate.parse(modifyIfNotBlank("date de naissance", a.getDn().format(formatter)));
+                String adresse=modifyIfNotBlank("adresse", a.getAdresse());
+                String mail= modifyIfNotBlank("mail", a.getMail());
+                String tel= modifyIfNotBlank("tel", a.getTel());
+                a.setNumlecteur(numlecteur);
+                a.setNom(nom);
+                a.setPrenom(prenom);
+                a.setDn(dn);
+                a.setAdresse(adresse);
+                a.setMail(mail);
+                a.setTel(tel);
                 break;
             } catch (Exception e) {
                 System.out.println("erreur :" + e);
             }
         }while(true);
-        controller.update(l);
+        controller.update(a);
    }
 
 
