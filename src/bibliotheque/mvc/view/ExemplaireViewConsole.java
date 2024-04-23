@@ -8,6 +8,7 @@ import bibliotheque.mvc.GestionMVC;
 import bibliotheque.mvc.controller.ControllerSpecialExemplaire;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -102,6 +103,12 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
                 System.out.println("ouvrage : ");
                 List<Ouvrage> lo = GestionMVC.ov.getAll();
                 //TODO présenter les ouvrages par ordre de titre ==> classe anonyme
+                lo.sort(new Comparator<Ouvrage>() {
+                    @Override
+                    public int compare(Ouvrage o1, Ouvrage o2) {
+                        return o1.getTitre().compareTo(o2.getTitre());
+                    }
+                });
                 int ch = choixListe(lo);
                 a = new Exemplaire(mat, descr,lo.get(ch-1));
                 System.out.println("rayon");
