@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import static bibliotheque.mvc.GestionMVC.LOCATIONS;
+import static bibliotheque.mvc.GestionMVC.lv;
 import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
@@ -99,22 +101,12 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
                 String descr = sc.nextLine();
                 System.out.println("ouvrage : ");
                 List<Ouvrage> lo = GestionMVC.ov.getAll();
-                lo.sort(new Comparator<Ouvrage>() {
-                    @Override
-                    public int compare(Ouvrage o1, Ouvrage o2) {
-                        return o1.getTitre().compareTo(o2.getTitre());
-                    }
-                });
+                lo.sort((o1, o2) -> o1.getTitre().compareTo(o2.getTitre()));
                 int ch = choixListe(lo);
                 a = new Exemplaire(mat, descr,lo.get(ch-1));
                 System.out.println("rayon");
                 List<Rayon> lr = GestionMVC.rv.getAll();
-                lr.sort(new Comparator<Rayon>() {
-                    @Override
-                    public int compare(Rayon o1, Rayon o2) {
-                        return o1.getCodeRayon().compareTo(o2.getCodeRayon());
-                    }
-                });
+                lr.sort((o1, o2) -> o1.getCodeRayon().compareTo(o2.getCodeRayon()));
                 ch= choixListe(lr);
                 a.setRayon(lr.get(ch-1));
                 break;
@@ -162,10 +154,15 @@ public class ExemplaireViewConsole extends AbstractView<Exemplaire> {
    }
 
     private void louer(Exemplaire a) {
-        List<Lecteur> la = GestionMVC.lv.getAll();
-        int x =choixListe(la);
-        Lecteur l = la.get(x-1);
-        GestionMVC.LOCATIONS.put(a,l);
+        List<Lecteur> llec= lv.getAll();
+        llec.sort(new Comparator<Lecteur>() {
+            @Override
+            public int compare(Lecteur o1, Lecteur o2) {
+                return o1.getNumlecteur()-o2.getNumlecteur();
+            }
+        });
+        int ch = choixListe(llec);
+        LOCATIONS.put(a,llec.get(ch-1));
     }
 
 
